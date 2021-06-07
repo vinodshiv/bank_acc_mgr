@@ -1,6 +1,5 @@
 """
 Vinod Shivarudrappa
-Class: CS 521 - Spring 2
 Date: 18-Apr-2021
 Term Project - Bank Account Manager (ATM Style)
 
@@ -104,7 +103,7 @@ def atm_func(acc_type):
 
 if __name__ == '__main__':
 
-    print('\n\t\t \U0001F4B5\U0001F4B5\U0001F4B5 Welcome to METCS ATM at 521 '
+    print('\n\t\t \U0001F4B5\U0001F4B5\U0001F4B5 Welcome to ATM at 521 '
           'Commonwealth Ave \U0001F4B5\U0001F4B5\U0001F4B5 ')
 
     # Define variables
@@ -159,7 +158,7 @@ if __name__ == '__main__':
 
                 elif acc_choice == '3':
                     # Exit full program
-                    print('\n\t\U0001F4B5\U0001F4B5 Thanks for using METCS ATM '
+                    print('\n\t\U0001F4B5\U0001F4B5 Thanks for using ATM '
                           'at 521 Commonwealth Ave! \U0001F4B5\U0001F4B5\n')
                     acc_sess_bool = False
                     sent_bool = False
