@@ -35,4 +35,14 @@
 regex, time, random, string, sqlite3, os
 
 - The module tabulate is used to pretty print the mini statement – this is not a part of the standard library and will have to be installed using pip: ```pip install tabulate```
--
+- The program consists of 3 files:
+  - bank_acc_mgr.py  - containing the main functionality
+  - CheckingAccount.py – containing the class for Checking Account
+  - SavingsAccount.py – containing the class for Savings Account
+
+- When executed, it produces two more files – CheckingAccount.db and SavingsAccount.db – sqlite3 databases for the respective accounts. The files are left on the file system after the program exits – this is to retain statement information if needed to access from outside the program.
+
+## Instructions to run:
+Clone this repo or download as zip, within the downloaded folder, execute the file bank_acc_mgr.py – either on an IDE, directly from the file system, or from the command line
+python <path>/bank_acc_mgr.py 
+
