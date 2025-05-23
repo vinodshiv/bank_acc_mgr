@@ -46,3 +46,42 @@ regex, time, random, string, sqlite3, os
 Clone this repo or download as zip, within the downloaded folder, execute the file bank_acc_mgr.py – either on an IDE, directly from the file system, or from the command line
 python <path>/bank_acc_mgr.py 
 
+## Manual Testing Considerations
+The `bank_acc_mgr.py` script includes detailed comments pointing to specific areas and inputs that are good candidates for manual testing. Here's a summary of areas to focus on:
+
+**1. Input Validation:**
+   - **User Name Input (Initial Setup):**
+     - Empty names.
+     - Names containing numbers or special characters (note the current regex `r"(\w+)$"` only validates the end of the string).
+     - Very long names.
+     - Names consisting only of spaces.
+   - **Numeric Menu Choices (Account Selection, ATM Options):**
+     - Non-numeric inputs (e.g., letters, symbols).
+     - Numbers outside the valid range for the menu.
+     - Empty input (just pressing Enter).
+   - **Withdrawal/Deposit Amounts:**
+     - Non-numeric inputs.
+     - Negative amounts (observe how `CheckingAccount` and `SavingsAccount` classes handle these – e.g., negative withdrawal might act as deposit, negative deposit is rejected).
+     - Zero amounts.
+     - Withdrawing an amount greater than the available balance.
+     - Very large valid numbers.
+
+**2. Application Flow:**
+   - **Sequence of Operations:**
+     - Perform transactions in various orders within an account session (e.g., Deposit -> Withdraw -> Check Balance -> Print Statement -> Deposit again).
+     - Check mini-statement after no transactions, after one, and after more than ten transactions.
+   - **Session Management:**
+     - Select an account (e.g., Checking), perform some operations, then exit that account's session (using option '5').
+     - Immediately re-enter the same account (Checking) to ensure its state (balance, transactions) is preserved.
+     - Select the other account (e.g., Savings) and perform operations.
+     - Exit one account session, then select the other, and then exit the ATM completely.
+   - **Exiting the Application:**
+     - Ensure graceful exit using option '3' from the main account selection menu.
+     - Verify the "Thanks for using ATM..." message appears.
+     - (Behind the scenes, database connections should be closed automatically by the script).
+
+**3. Data Persistence (Mini-Statement):**
+   - After performing several transactions and exiting the ATM, if you restart the application and create accounts for the *same owner name*, the `CheckingAccount.db` and `SavingsAccount.db` files will be overwritten due to the `os.remove()` call in the `__init__` method of the account classes. This means transaction history is effectively reset for each run of `bank_acc_mgr.py` *for the same database filenames*. True persistence across application runs would require a different database handling strategy.
+
+The comments within `bank_acc_mgr.py` provide more context for these test points directly in the code.
+
